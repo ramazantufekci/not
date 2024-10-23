@@ -1,9 +1,6 @@
 name: PHPStan Analysis and PHPUnit Coverage Report
 on:
   push:
-    paths:
-      - '.github/reporting.yml'
-      - '**.php'
 
 permissions:
   contents: write
