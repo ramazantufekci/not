@@ -1,8 +1,7 @@
 parameters:
   level: 6
-  memoryLimit: 1024M
   paths:
-    - src/
+    - src/Controller/
 
 services:
   errorFormatter.md:
