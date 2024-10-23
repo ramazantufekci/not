@@ -1,8 +1,6 @@
 name: PHPStan Analysis and PHPUnit Coverage Report
-
 on:
   push:
-    branches: ["main"]
     paths:
       - '.github/reporting.yml'
       - '**.php'
