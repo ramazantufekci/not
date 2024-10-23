@@ -2,7 +2,7 @@ parameters:
   level: 6
   memoryLimit: 1024M
   paths:
-    - not.php
+    - src/
 
 services:
   errorFormatter.md:
