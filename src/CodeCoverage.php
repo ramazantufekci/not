@@ -1,12 +1,13 @@
 <?php
-include_once("../vendor/autoload.php"); 
-use SebastianBergmann\CodeCoverage\CodeCoverage;
+
+include_once(__DIR__."/../vendor/autoload.php"); 
+$data = include_once(__DIR__."/../coverage.php");
 
 class CoverageReportGenerator
 {
     private $coverage;
 
-    public function __construct(CodeCoverage $coverage)
+    public function __construct($coverage)
     {
         $this->coverage = $coverage;
     }
@@ -55,8 +56,7 @@ class CoverageReportGenerator
         return round(($tested / $total) * 100, 2);
     }
 }
-
 // CodeCoverage nesnesini başlatıyoruz ve raporu oluşturuyoruz (örnek veri)
-$coverage = new CodeCoverage();  // Bu, gerçek test verilerinizle dolu olmalı
-$reportGenerator = new CoverageReportGenerator($coverage);
+//$coverage = new CodeCoverage((new Selector)->forLineCoverage($data->filter()),$data->filter());  // Bu, gerçek test verilerinizle dolu olmalı
+$reportGenerator = new CoverageReportGenerator($data);
 $reportGenerator->generateMarkdownReport();
