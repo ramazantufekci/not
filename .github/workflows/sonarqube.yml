@@ -33,7 +33,7 @@ jobs:
 
       - name: Generate Coverage report
         run: |
-          php src/CoverageGenerate.php
+          php app/CodeCoverage.php
         env:
           XDEBUG_MODE: coverage
 
