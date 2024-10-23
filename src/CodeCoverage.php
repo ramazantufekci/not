@@ -1,5 +1,5 @@
 <?php
-
+include_once("../vendor/autoload.php"); 
 use SebastianBergmann\CodeCoverage\CodeCoverage;
 
 class CoverageReportGenerator
