@@ -1,5 +1,4 @@
 {
-  "name": "Not App",
   "require": {
         "phpstan/phpstan": "^1.12"
     },
