@@ -8,7 +8,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,7 +35,9 @@ jobs:
           php app/CodeCoverage.php
         env:
           XDEBUG_MODE: coverage
-
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: PHPStan Analysis
         run: |
           ./vendor/bin/phpstan analyse app/ --level 6 --error-format=github --no-progress >>"Static Analysis.md" 2>&1
