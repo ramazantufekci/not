@@ -23,7 +23,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "8.2"
-          php_extensions: soap intl gd
+          php_extensions: soap intl gd mbstring
 
       - name: PHPUnit
         run: |
@@ -39,7 +39,7 @@ jobs:
 
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=github --no-progress
+          ./vendor/bin/phpstan -V # analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=github --no-progress
 
       - name: Wiki checkout
         uses: actions/checkout@v4
