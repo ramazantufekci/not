@@ -39,8 +39,7 @@ jobs:
 
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=md --no-progress #>>"StaticAnalysis.md"
-          echo "bitti"
+          ./vendor/bin/phpstan analyse --configuration=phpstan.neon --memory-limit=1024M 
 
       - name: Wiki checkout
         uses: actions/checkout@v4
