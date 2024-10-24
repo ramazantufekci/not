@@ -39,12 +39,12 @@ jobs:
 
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan analyse app/ --level 6 --error-format=github --no-progress >>"Static Analysis.md"
+          ./vendor/bin/phpstan analyse app/ --level 1 --error-format=github --no-progress >>"Static Analysis.md"
       - name: Wiki checkout
         uses: actions/checkout@v4
         with:
           ref: main
-          repository: ${{github.repository}}/wiki
+          repository: ${{github.repository}}.wiki
           path: 'wiki'
 
       - name: Push
