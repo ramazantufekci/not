@@ -39,7 +39,7 @@ jobs:
 
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan -V # analyse --configuration=phpstan.neon --memory-limit=1024M --error-format=github --no-progress
+          ./vendor/bin/phpstan analyse app/# --configuration=phpstan.neon --memory-limit=1024M --error-format=github --no-progress
 
       - name: Wiki checkout
         uses: actions/checkout@v4
