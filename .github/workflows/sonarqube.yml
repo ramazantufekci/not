@@ -39,7 +39,7 @@ jobs:
 
       - name: PHPStan Analysis
         run: |
-          ./vendor/bin/phpstan analyse app/ --level 6 --error-format=github --no-progress >1>>"Static Analysis.md"
+          ./vendor/bin/phpstan analyse app/ --level 6 --error-format=github --no-progress >>"Static Analysis.md" 2>&1
           git config --local init.defaultBranch main
       - name: Wiki checkout
         uses: actions/checkout@v4
