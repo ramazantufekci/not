@@ -44,7 +44,7 @@ jobs:
       - name: Wiki checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository}}/wiki
+          repository: ${{github.repository}}
           path: 'wiki'
           ref: main
 
