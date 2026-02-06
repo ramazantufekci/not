@@ -49,6 +49,7 @@ jobs:
 
       - name: Push
         run: |
+          git config --local init.defaultBranch main
           mv code-coverage-report.md wiki
           mv 'Static Analysis.md' wiki
           cd wiki
