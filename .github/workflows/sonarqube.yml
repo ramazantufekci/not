@@ -46,11 +46,10 @@ jobs:
         with:
           repository: ${{github.repository}}.wiki
           path: 'wiki'
+          ref: main
 
       - name: Push
         run: |
-          git config --local init.defaultBranch main
-          git switch main
           mv code-coverage-report.md wiki
           mv 'Static Analysis.md' wiki
           cd wiki
