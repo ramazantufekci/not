@@ -3,7 +3,8 @@ name: PR Impact Analysis
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-
+permissions:
+  contents: write
 jobs:
   impact-analysis:
     runs-on: ubuntu-latest
