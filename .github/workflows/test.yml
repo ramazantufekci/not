@@ -1,7 +1,7 @@
 name: PR Impact Analysis
 
 on:
-  push
+  push:
 
 jobs:
   impact-analysis:
