@@ -25,6 +25,7 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
+          echo "FILES=$(git diff --name-only origin/${{ github.base_ref }})"
           echo "FILES=$(git diff --name-only origin/${{ github.base_ref }})" >> $GITHUB_OUTPUT
 
       - name: Analyze Risk Level
