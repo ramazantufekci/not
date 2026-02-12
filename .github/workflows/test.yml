@@ -56,24 +56,4 @@ jobs:
             composer audit || true
           fi
 
-      - name: Create PR Comment
-        uses: peter-evans/create-or-update-comment@v4
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            ## 🔍 PR Impact Analysis Report
-
-            **Changed Files:**
-            ```
-            ${{ steps.changes.outputs.FILES }}
-            ```
-
-            **Risk Level:** 🔥 ${{ steps.risk.outputs.RISK_LEVEL }}
-
-            ### ✔ Automated Checks
-            - PHPUnit executed
-            - Composer security audit executed
-            - CI pipeline verified
-
-            ---
-            🤖 Generated automatically by PR Impact Workflow
+     
