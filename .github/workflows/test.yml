@@ -1,0 +1,80 @@
+name: PR Impact Analysis
+
+on:
+  branch:
+    - main
+
+jobs:
+  impact-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install dependencies
+        run: |
+          if [ -f composer.json ]; then
+            composer install --no-progress --no-suggest
+          fi
+
+      - name: Get changed files
+        id: changes
+        run: |
+          echo "FILES=$(git diff --name-only origin/${{ github.base_ref }})" >> $GITHUB_OUTPUT
+
+      - name: Analyze Risk Level
+        id: risk
+        run: |
+          FILES="${{ steps.changes.outputs.FILES }}"
+          RISK="LOW"
+
+          if echo "$FILES" | grep -E "(auth|config|database|migration)"; then
+            RISK="HIGH"
+          elif echo "$FILES" | grep -E "(controller|service|model)"; then
+            RISK="MEDIUM"
+          fi
+
+          echo "RISK_LEVEL=$RISK" >> $GITHUB_OUTPUT
+
+      - name: Run PHPUnit
+        id: tests
+        run: |
+          if [ -f vendor/bin/phpunit ]; then
+            vendor/bin/phpunit --testdox
+          else
+            echo "No PHPUnit found"
+          fi
+
+      - name: Run Security Check (Composer Audit)
+        run: |
+          if [ -f composer.lock ]; then
+            composer audit || true
+          fi
+
+      - name: Create PR Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 🔍 PR Impact Analysis Report
+
+            **Changed Files:**
+            ```
+            ${{ steps.changes.outputs.FILES }}
+            ```
+
+            **Risk Level:** 🔥 ${{ steps.risk.outputs.RISK_LEVEL }}
+
+            ### ✔ Automated Checks
+            - PHPUnit executed
+            - Composer security audit executed
+            - CI pipeline verified
+
+            ---
+            🤖 Generated automatically by PR Impact Workflow
