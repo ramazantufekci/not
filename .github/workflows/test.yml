@@ -1,7 +1,8 @@
 name: PR Impact Analysis
 
 on:
-  push:
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   impact-analysis:
@@ -25,12 +26,13 @@ jobs:
       - name: Get changed files
         id: changes
         run: |
-          echo "FILES=$(git diff --name-only origin/${{ github.base_ref }})"
+          echo {{ github.base_ref }}
           echo "FILES=$(git diff --name-only origin/${{ github.base_ref }})" >> $GITHUB_OUTPUT
 
       - name: Analyze Risk Level
         id: risk
         run: |
+          echo {{ steps.changes.outputs.FILES }}
           FILES="${{ steps.changes.outputs.FILES }}"
           RISK="LOW"
 
@@ -57,4 +59,24 @@ jobs:
             composer audit || true
           fi
 
-     
+      - name: Create PR Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 🔍 PR Impact Analysis Report
+
+            **Changed Files:**
+            ```
+            ${{ steps.changes.outputs.FILES }}
+            ```
+
+            **Risk Level:** 🔥 ${{ steps.risk.outputs.RISK_LEVEL }}
+
+            ### ✔ Automated Checks
+            - PHPUnit executed
+            - Composer security audit executed
+            - CI pipeline verified
+
+            ---
+            🤖 Generated automatically by PR Impact Workflow
