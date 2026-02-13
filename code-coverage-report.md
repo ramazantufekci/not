@@ -1,13 +1,13 @@
 # Code Coverage Report
 
 ## Classes and Traits
-- Tested: **1** / **2**
+- Tested: **1** / **1**
 
 ## Methods
-- Tested: **1** / **4**
+- Tested: **1** / **1**
 
 ## Lines
-- Executed: **1** / **28**
+- Executed: **3** / **3**
 
 ## Overall Coverage
-- Line Coverage: **3.57%**
+- Line Coverage: **100%**
