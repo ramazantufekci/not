@@ -43,7 +43,7 @@ jobs:
           git config --local init.defaultBranch main
         continue-on-error: true
       - name: Wiki checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: ${{github.repository}}.wiki
           ref: main
@@ -54,8 +54,6 @@ jobs:
           mv 'Static Analysis.md' wiki
           cd wiki
           ls -la
-          git config --global init.defaultBranch main
-          git branch -m main
           git config user.name actions-runner
           git config user.email actions-runner@github.com
           git add .
