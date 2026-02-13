@@ -2,7 +2,7 @@ name: PR Impact Analysis
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened,edited,labeled,unlabeled]
 
 jobs:
   impact-analysis:
@@ -58,9 +58,10 @@ jobs:
           if [ -f composer.lock ]; then
             composer audit || true
           fi
+          echo "{{GITHUB_TOKEN}}"
 
       - name: Create PR Comment
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |

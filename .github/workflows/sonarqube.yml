@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: ./vendor
           key: composer-${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
@@ -39,13 +39,13 @@ jobs:
       - name: PHPStan Analysis
         run: |
           ./vendor/bin/phpstan analyse --error-format=md --no-progress >>"Static Analysis.md"
+          echo "Ramazan TÜFEKÇİ">>"Static Analysis.md"
           git config --local init.defaultBranch main
         continue-on-error: true
       - name: Wiki checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          repository: ${{github.repository}}
-          path: 'wiki'
+          repository: ${{github.repository}}.wiki
           ref: main
 
       - name: Push
