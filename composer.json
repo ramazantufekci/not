@@ -1,11 +1,9 @@
 {
-  "require": {
-    "phpstan/phpstan": "^1.12"
-  },
   "require-dev": {
     "phpunit/php-code-coverage": "^10.1",
     "phpunit/phpunit": "^10.5",
-    "phpstan/extension-installer": "^1.4"
+    "phpstan/extension-installer": "^1.4",
+    "phpstan/phpstan": "^2.1"
   },
   "autoload": {
     "psr-4": {
@@ -17,5 +15,10 @@
     "allow-plugins": {
       "phpstan/extension-installer": true
     }
+  },
+  "require": {
+    "symfony/routing": "^6.4",
+    "symfony/http-foundation": "^6.4",
+    "twig/twig": "^3.23"
   }
 }
