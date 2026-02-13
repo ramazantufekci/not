@@ -54,6 +54,7 @@ jobs:
           mv 'Static Analysis.md' wiki
           cd wiki
           ls -la
+          git config --global init.defaultBranch main
           git config user.name actions-runner
           git config user.email actions-runner@github.com
           git add .
