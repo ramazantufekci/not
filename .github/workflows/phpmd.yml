@@ -12,7 +12,6 @@ permissions:
 jobs:
   build-test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - uses: php-actions/composer@v6 # or alternative dependency management
@@ -30,7 +29,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -40,7 +38,6 @@ jobs:
       - name: Run PHPMD
         run: phpmd . sarif codesize --reportfile phpmd-results.sarif
         continue-on-error: true
-
       - name: Upload analysis results to GitHub
         uses: github/codeql-action/upload-sarif@v3
         with:
