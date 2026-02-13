@@ -39,6 +39,7 @@ jobs:
       - name: PHPStan Analysis
         run: |
           ./vendor/bin/phpstan analyse --error-format=md --no-progress >>"Static Analysis.md"
+          echo "Ramazan TÜFEKÇİ">>"Static Analysis.md"
           git config --local init.defaultBranch main
         continue-on-error: true
       - name: Wiki checkout
