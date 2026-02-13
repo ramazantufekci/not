@@ -39,14 +39,13 @@ jobs:
       - name: PHPStan Analysis
         run: |
           ./vendor/bin/phpstan analyse --error-format=md --no-progress >>"Static Analysis.md"
-          git config --local init.defaultBranch main
+          echo "Ramazan TÜFEKÇİ">>"Static Analysis.md"
+          
         continue-on-error: true
       - name: Wiki checkout
         uses: actions/checkout@v4
         with:
-          repository: ${{github.repository}}
-          path: 'wiki'
-          ref: main
+          repository: ${{github.repository}}.wiki
 
       - name: Push
         run: |
