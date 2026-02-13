@@ -12,7 +12,6 @@
 #   Overcomplicated expressions
 #   Unused parameters, methods, properties
 # More details at https://phpmd.org/
-
 name: PHPMD
 
 on: workflow_dispatch
