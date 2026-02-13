@@ -49,9 +49,9 @@ jobs:
 
       - name: Push
         run: |
-          mv code-coverage-report.md wiki
-          mv 'Static Analysis.md' wiki
-          cd wiki
+          mv code-coverage-report.md not.wiki
+          mv 'Static Analysis.md' not.wiki
+          cd not.wiki
           ls -la
           git config user.name actions-runner
           git config user.email actions-runner@github.com
